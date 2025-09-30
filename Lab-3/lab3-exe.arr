@@ -1,5 +1,8 @@
 use context dcic2024
 #1
+include csv
+include data-source
+
 fun leapyear(year :: Number) -> Boolean:
   doc: "returns if the inputted year is a leap year or not"
   
@@ -88,4 +91,26 @@ mars["Distance"]
 
 #5
 
-include csv
+
+
+something = load-table: year,day,month,rate
+  source:csv-table-file("boe_rates.csv", default-options)
+    
+  sanitize year using num-sanitizer
+  sanitize day using num-sanitizer
+  sanitize rate using num-sanitizer
+end
+
+something.length()
+
+median(something,"rate")
+
+modes(something,"rate")
+
+#max value
+descend = order-by(something,"rate",false)
+descend.row-n(0)["rate"]
+
+#min value
+ascend = order-by(something,"rate",true)
+ascend.row-n(0)["rate"]
