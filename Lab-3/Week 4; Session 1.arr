@@ -21,3 +21,8 @@ new2 = filter-with(orders, lam(t): t["time"] <= "11:59" end)
 check:
   new1 is new2
 end
+
+#descending order
+new_table = order-by(orders, "time", false)
+
+new_table.row-n(0)["time"]
