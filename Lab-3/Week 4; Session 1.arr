@@ -1,4 +1,6 @@
 use context dcic2024
+include csv
+
 orders = table: time, amount
   row: "08:00", 10.50
   row: "09:30", 5.75
@@ -26,3 +28,19 @@ end
 new_table = order-by(orders, "time", false)
 
 new_table.row-n(0)["time"]
+
+photos = load-table: Location, Subject, Date
+  source:csv-table-url("https://raw.githubusercontent.com/NU-London/LCSCI4207-datasets/refs/heads/main/photos.csv", default-options)
+end
+
+forest_table = filter-with(photos, lam(p): p["Subject"] == "Forest" end)
+
+new_forest_table = order-by(forest_table, "Date", false)
+
+new_forest_table.row-n(0)["Location"]
+
+location_counts = count(photos, "Location")
+
+new_loc_counts = order-by(location_counts, "count", false)
+
+fbc = freq-bar-chart(photos, "Location")
