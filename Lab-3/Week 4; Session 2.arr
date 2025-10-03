@@ -1,5 +1,6 @@
 use context dcic2024
 include data-source
+include csv
 
 #1
 
@@ -106,3 +107,29 @@ end
 
 #3
 
+ons = load-table: Code,Indicies,Aug-24,Sep-24,Oct-24,Nov-24,Dec-24,Jan-25,Feb-25,Mar-25,Apr-25,May-25,Jun-25,Jul-25,Aug-25
+  source:csv-table-file("ons-cpih-aug25.csv", default-options)
+  sanitize Aug-24 using num-sanitizer
+  sanitize Sep-24 using num-sanitizer
+  sanitize Oct-24 using num-sanitizer
+  sanitize Nov-24 using num-sanitizer
+  sanitize Dec-24 using num-sanitizer
+  sanitize Jan-25 using num-sanitizer
+  sanitize Feb-25 using num-sanitizer
+  sanitize Mar-25 using num-sanitizer
+  sanitize Apr-25 using num-sanitizer
+  sanitize May-25 using num-sanitizer
+  sanitize Jun-25 using num-sanitizer
+  sanitize Jul-25 using num-sanitizer
+  sanitize Aug-25 using num-sanitizer
+end
+
+
+
+new_ons = build-column(ons, "difference", lam(r): r["Aug-24"] - r["Aug-25"] end)
+
+new_ons
+
+newest_ons = build-column(new_ons, "pct-difference", lam(p): ((num-abs(p["difference"] - p["Aug-24"])) / ((p["difference"] + p["Aug-24"]) / 2)) * 100 end)
+
+newest_ons
