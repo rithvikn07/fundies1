@@ -81,3 +81,28 @@ where:
   end
 end
 
+#2
+
+shop = table: object :: String, price :: Number
+  row: "Football", 10
+  row: "Basketball", 20
+  row: "Bat", 30
+end
+
+fun add-vat(p :: Table) -> Table:
+  transform-column(p, "price", lam(v :: Number): v * 1.2 end)
+where:
+  test =
+    table: price
+      row: 10
+      row: 20
+    end
+  add-vat(test) is
+  table: price
+    row: 12
+    row: 24
+  end
+end
+
+#3
+
