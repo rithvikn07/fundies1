@@ -65,3 +65,22 @@ newest_flights2.row-n(0)["origin"]
 newest_flights2.row-n(0)["dep_delay"]
 
 #3
+
+flights3 = transform-column(flights, "dep_delay", lam(x :: Number):  if x < 0: 0 else: x end end)
+
+newflights3 = transform-column(flights3, "arr_delay", lam(y :: Number):  if y < 0: 0 else: y end end)
+
+newest_flights3 = build-column(newflights3, "effective_speed", lam(z :: Row): if z["air_time"] > 0: z["distance"] / (z["air_time"] / 60) else: 0 end end)
+
+newest_flights3
+
+
+final_flights3 = order-by(newest_flights3, "effective_speed", false)
+
+final_flights3
+
+final_flights3.row-n(0)["carrier"]
+final_flights3.row-n(0)["origin"]
+final_flights3.row-n(0)["dest"]
+
+#4
