@@ -32,13 +32,36 @@ end
 
 newflights = filter-with(flights, is_long_flight)
 
-newflights2 = order-by(newflights, "distance", false)
+newflights1 = order-by(newflights, "distance", false)
 
-newflights2
+newflights1
 
-newflights2.row-n(0)["carrier"]
-newflights2.row-n(0)["origin"]
-newflights2.row-n(0)["dest"]
+newflights1.row-n(0)["carrier"]
+newflights1.row-n(0)["origin"]
+newflights1.row-n(0)["dest"]
 
 #2
   
+fun is_delayed_departure(r1 :: Row) -> Boolean:
+  r1["dep_delay"] >= 30
+end
+
+fun is_morning_sched_dep(r2 :: Row) -> Boolean:
+  r2["sched_dep_time"] < 1200
+end
+
+flights2 = filter-with(flights, lam(r3 :: Row): r3["dep_delay"] >= 30 end)
+
+newflights2 = filter-with(flights2, lam(r4 :: Row): r4["sched_dep_time"] < 1200 end)
+
+new2flights2 = filter-with(newflights2, lam(r5 :: Row): r5["distance"] > 500 end)
+
+newest_flights2 = order-by(new2flights2, "dep_delay", false)
+
+newest_flights2
+
+newest_flights2.row-n(0)["flight"]
+newest_flights2.row-n(0)["origin"]
+newest_flights2.row-n(0)["dep_delay"]
+
+#3
