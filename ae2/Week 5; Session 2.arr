@@ -70,10 +70,45 @@ end
 
 #4
 
-fun my-doubles(numb-list :: List) -> List: 
-  map(lam(x): x * 2 end, numb-list)
+
+fun my-doubles(listt :: List) -> List block:
+  var doubles-list = [list: ]
+  for each(element from listt):
+    doubles-list := doubles-list.append([list: element * 2])
+  end
+  doubles-list
 where:
-  my-doubles([list:1,2,3]) is ([list:2,4,6])
+  my-doubles([list:1,2,3]) is [list:2,4,6]
 end
 
 #5
+
+fun my-doubles-map(numb-list :: List) -> List: 
+  map(lam(x): x * 2 end, numb-list)
+where:
+  my-doubles-map([list:1,2,3]) is ([list:2,4,6])
+end
+
+#6
+
+fun my-string-lens(l :: List) -> List:
+  var str-list = [list: ]
+  for each(el from l):
+    str-list := str-list.append([list: string-length(el)])
+  end
+  str-list
+where:
+  my-string-lens([list:"hi","bye"]) is ([list:2,3])
+end
+
+
+#7
+
+fun my-string-lens-map(ls :: List) -> List:
+  map(lam(y): string-length(y) end, ls)
+where:
+  my-string-lens-map([list:"hi","bye"]) is ([list:2,3])
+end
+  
+
+#8
