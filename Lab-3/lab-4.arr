@@ -85,6 +85,31 @@ final_flights3.row-n(0)["dest"]
 
 #4
 
+<<<<<<< HEAD
+fun apply-arrival-discount(t :: Table) -> Table:
+  transform-column(t, "arr_delay", lam(n :: Number): if (n >= 0) and (n <= 45):
+    n * 0.8 else: n end end)
+where:
+  test-table =
+    table: arr_delay
+      row: -10
+      row: 0
+      row: 30
+      row: 60
+    end
+  apply-arrival-discount(test-table) is
+  table: arr_delay
+    row: -10
+    row: 0
+    row: 24
+    row: 60
+  end
+end
+
+build
+        
+  
+=======
 #4.1
 
 fun apply-arrival-discount(t :: Table) -> Table:
@@ -106,3 +131,4 @@ where:
     row: 60
   end
 end
+>>>>>>> 3c3e4a2b7603be7f8baf4c7020d3fcd1229ac9b8
