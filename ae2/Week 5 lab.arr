@@ -72,4 +72,16 @@ freq-bar-chart(flights_58, "airline")
 histogram(flights_58, "distance", 5)
 scatter-plot(flights_58, "air_time", "distance")
 
-flights_58.get-column("distance")
+d = flights_58.get-column("distance")
+
+fun x(l :: List) -> Number block:
+  var total = 0
+  for each(n from l):
+    total := total + n
+  end
+  total
+  
+where:
+  x([list:1,2,3]) is 6
+end
+
