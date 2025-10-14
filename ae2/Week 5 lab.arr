@@ -85,3 +85,28 @@ where:
   x([list:1,2,3]) is 6
 end
 
+fun y(li :: List) -> Number block:
+  var total1 = 0
+  var c = 0
+  for each(nu from li) block:
+    total1 := total1 + nu
+    c := c + 1
+  end
+  total1 / c
+  
+where:
+  y([list:1,2,3]) is 2
+end
+
+fun max(lis :: List) -> Number block:
+  var m = 1
+  for each(num from lis):
+    if num > m:
+      m := num
+    else:
+      0
+    end
+  end
+end
+    
+  
