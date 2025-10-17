@@ -3,6 +3,7 @@ use context starter2024
 link(1, link(2, link(3, empty)))
 
 #1
+
 fun string-concat(l :: List):
   cases (List) l:
     | empty => ""
@@ -31,5 +32,6 @@ fun round-numbers(l3 :: List<Number>):
     | link(f, r) => link(num-round(f), round-numbers(r))
   end
 where:
-  round-numbers([list: 1.8, 2.2, 3.1]) is ([list: 2, 2, 3])
+  round-numbers([list: 0.8, 2.2, 3.1]) is ([list: 1, 2, 3])
 end
+
