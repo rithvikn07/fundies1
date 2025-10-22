@@ -91,8 +91,6 @@ mars["Distance"]
 
 #5
 
-
-
 something = load-table: year,day,month,rate
   source:csv-table-file("boe_rates.csv", default-options)
     
