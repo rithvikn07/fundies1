@@ -62,6 +62,10 @@ fun get-domain(email :: String) -> String:
 where:
   get-domain("e.gray@nulondon.ac.uk") is "nulondon"
 end
+
+uni-domain = map(get-domain, all-emails)
+
+distinct_uni-domain = distinct(uni-domain)
   
 
 fun replace-domain(em :: String) -> String:
