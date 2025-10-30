@@ -6,7 +6,7 @@ fun more-than-five(l):
   cases (List) l:
     | empty => empty
     | link(f,r) =>
-      if string-length > 5:
+      if string-length(f) > 5:
         link(f, more-than-five(r))
       else:
         more-than-five(r)
@@ -20,3 +20,4 @@ where:
 end
 
 #2
+
