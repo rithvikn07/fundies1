@@ -20,8 +20,20 @@ newt = add-table(basket)
 
 newt
 
-newt2 = order-by(newt, "total", false)
 
-newt2
+fun tick(t1 :: Table) -> Table:
+  transform-column(t1, "price", lam(y): y + 2 end)
 
-newt2.row-n(0)["total"]
+where:
+  test-table = table: price
+    row: 2
+    row: 4
+  end 
+  tick(test-table) is
+  table: price
+  row: 4
+  row: 6
+
+end
+end
+
