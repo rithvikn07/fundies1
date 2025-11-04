@@ -70,3 +70,32 @@ where:
   total-load(core) is 225
   total-load(apply-scale(core, 2)) is 112.5
 end
+
+#5
+
+fun needed-scale(n :: SensorNet) -> Number:
+  cases (SensorNet) n:
+    | sensor(rate)  => 1
+    | hub(bw, l, r) =>
+      block:
+        load = total-load(l) + total-load(r)
+        here = load / bw
+        num-max( num-max(here, needed-scale(l)), needed-scale(r) )
+      end
+  end
+where:
+  # For 'core': max(225/200 = 1.125, hub1: 180/150 = 1.2) = 1.2
+  needed-scale(core) is 1.2
+end
+
+
+fun scale-to-fit(n :: SensorNet) -> SensorNet:
+  block:
+    s = needed-scale(n)
+    if s <= 1:
+      n
+    else:
+      apply-scale(n, s)
+    end
+  end
+end
