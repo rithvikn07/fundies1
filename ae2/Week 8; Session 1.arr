@@ -35,3 +35,18 @@ end
 
 #2
 
+fun count-rank(t :: TaxonomyTree, r :: String) -> Number:
+  if t.rank = r:
+    1 + count-rank-list(t.children)
+  else:
+    count-rank-list(t.children)
+  end
+end
+
+fun count-rank-list(lst :: List<TaxonomyTree>, r :: String) -> Number:
+  cases (List<TaxonomyTree>) lst:
+    | empty => 0
+    | link(first, rest) => count-rank(first) + count-rank-list(rest)
+  end
+end
+
