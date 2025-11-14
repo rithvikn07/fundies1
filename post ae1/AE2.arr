@@ -80,3 +80,9 @@ fun variance(ls :: List <Number>) -> Number block:
   
   total_ / count_
 end
+
+num-round(variance(adelie_masses))
+
+num-round(variance(gentoo_masses))
+
+num-round(variance(chinstrap_masses))
