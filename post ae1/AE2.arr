@@ -2,13 +2,6 @@ use context dcic2024
 include csv
 include data-source
 
-#| Scalar Processing
-
-   Example Question 1
-
-   What is the ratio of average male body mass to average female body mass? 
-
-|#
 
 penguins = load-table:
   Penguin-number,species,island,bill_length_mm,bill_depth_mm,flipper_length_mm,body_mass_g,sex,year
@@ -18,6 +11,14 @@ penguins = load-table:
 
 end
 
+
+#| Scalar Processing
+
+   Example Question 1
+
+   What is the ratio of average male body mass to average female body mass? 
+
+|#
 
 # Filter table to get two different tables for men and women
 
@@ -47,6 +48,35 @@ avrg(male_masses) / avrg(female_masses)
 
 #| Example Question 2
 
-   Are the penguins 
+   Which species has the greatest variance?
 
 |#
+
+# Filtering to get seperate tables for each species
+
+adelie_penguins = filter-with(penguins, lam(r2 :: Row): r2["species"] == "Adelie" end )
+
+gentoo_penguins = filter-with(penguins, lam(r3 :: Row): r3["species"] == "Gentoo" end )
+
+chinstrap_penguins = filter-with(penguins, lam(r4 :: Row): r4["species"] == "Chinstrap" end )
+  
+# Extracting the body masses as a list
+adelie_masses = adelie_penguins.column("body_mass_g")
+
+gentoo_masses = gentoo_penguins.column("body_mass_g")
+
+chinstrap_masses = chinstrap_penguins.column("body_mass_g")
+
+fun variance(ls :: List <Number>) -> Number block:
+  avg = avrg(ls)
+  
+  var total_ = 0
+  var count_ = 0
+  
+  for each(y from ls) block:
+    total_:= total_ + ((y - avg) * (y - avg))
+    count_:= count_ + 1
+  end
+  
+  total_ / count_
+end
