@@ -81,8 +81,20 @@ fun variance(ls :: List <Number>) -> Number block:
   total_ / count_
 end
 
-num-round(variance(adelie_masses))
+adelie_masses_var = num-round(variance(adelie_masses))
 
-num-round(variance(gentoo_masses))
+gentoo_masses_var = num-round(variance(gentoo_masses))
 
-num-round(variance(chinstrap_masses))
+chinstrap_masses_var = num-round(variance(chinstrap_masses))
+
+fun max_calculator(a, b, c) -> Number:
+  if (a >= b) and (a >= c):
+    a
+  else if (b >= a) and (b >= c):
+    b
+  else:
+    c
+  end
+end
+
+max_calculator(adelie_masses_var, gentoo_masses_var, chinstrap_masses_var)
