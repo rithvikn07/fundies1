@@ -27,13 +27,13 @@ male_penguins = filter-with(penguins, lam(r :: Row): r["sex"] == "male" end)
 
 female_penguins = filter-with(penguins, lam(r1 :: Row): r1["sex"] == "female" end)
 
-#Extract body masses as a list
+# Extracting body masses as a list
 
 male_masses = male_penguins.column("body_mass_g")
 
 female_masses = female_penguins.column("body_mass_g")
 
-#function to calculate average
+# Function to calculate average of a list
 fun avrg(l :: List <Number>) -> Number block:
   var summ = 0
   var countt = 0
@@ -42,19 +42,23 @@ fun avrg(l :: List <Number>) -> Number block:
     countt := countt + 1
   end
   summ / countt
+  
+where:
+  avrg([list: 3, 5, 7, 9]) is 6
+  avrg([list: 3, 4]) is 3.5
 end
 
+# Ratio:
 avrg(male_masses) / avrg(female_masses)
 
 
 #| Example Question 2
 
    Which species has the greatest variance?
-
 |#
 
-# Filtering to get seperate tables for each species
 
+# Filtering to get seperate tables for each species
 adelie_penguins = filter-with(penguins, lam(r2 :: Row): r2["species"] == "Adelie" end )
 
 gentoo_penguins = filter-with(penguins, lam(r3 :: Row): r3["species"] == "Gentoo" end )
@@ -68,6 +72,7 @@ gentoo_masses = gentoo_penguins.column("body_mass_g")
 
 chinstrap_masses = chinstrap_penguins.column("body_mass_g")
 
+# Function to calculate variance of body mass lists
 fun variance(ls :: List <Number>) -> Number block:
   avg = avrg(ls)
   
@@ -82,12 +87,14 @@ fun variance(ls :: List <Number>) -> Number block:
   total_ / count_
 end
 
+# Storing variables as averages
 adelie_masses_var = num-round(variance(adelie_masses))
 
 gentoo_masses_var = num-round(variance(gentoo_masses))
 
 chinstrap_masses_var = num-round(variance(chinstrap_masses))
 
+# Function to calculate maximum value from three variables. 
 fun max_calculator(a, b, c) -> String:
   
   if (a >= b) and (a >= c):
@@ -97,15 +104,14 @@ fun max_calculator(a, b, c) -> String:
   else:
     "third value is max"
   end
+  
+where:
+  max_calculator(2, 4, 6) is "third value is max"
 end
 
 max_calculator(adelie_masses_var, gentoo_masses_var, chinstrap_masses_var)
 
-#| Example Question 3
 
-   W
-
-|#
 
 #| Transformation
    
@@ -155,8 +161,83 @@ chinstrap_penguins_new1 = transform-column(chinstrap_penguins, "bill_length_mm",
     end
   end)
 
-#| Example Question 2
+#adelie_penguins
+adelie_penguins_new1
 
-   W
+# Tables show that "bill_length_mm" column has been transformed. Same result will be shown in other two species as well. 
 
+
+
+#| Selection
+   
+   Example Question 1
+   
+   "Which penguins have flipper lengths greater than the median flipper length of the island they were found on?"
+   
 |#
+
+
+# Filtering to get seperate tables for penguins from each island
+
+torgerson_penguins = filter-with(penguins, lam(r :: Row): r["island"] == "Torgersen" end)
+
+biscoe_penguins = filter-with(penguins, lam(r :: Row): r["island"] == "Biscoe" end)
+
+dream_penguins = filter-with(penguins, lam(r :: Row): r["island"] == "Dream" end)
+
+
+# Ordering in ascending order to find median
+
+torgerson_penguins_ordered = order-by(torgerson_penguins, "flipper_length_mm", true)
+
+biscoe_penguins_ordered = order-by(biscoe_penguins, "flipper_length_mm", true)
+
+dream_penguins_ordered = order-by(dream_penguins, "flipper_length_mm", true)
+
+# Function to calculate median of list
+fun mediann(lst :: List <Number>):
+  num = length(lst)
+  mid = num-round(num / 2)
+  
+  # use num-round because: if the length of a list is odd, for example 3, 3/2 is not an integer. num-round rounds it up to 2. which is why we do "mid - 1" when the list length is odd.
+  
+  if num-modulo(num, 2) == 1:
+    lst.get(mid - 1)
+    
+    # if the length of the list is odd, there will be a middle value which acts as the median. 
+    # however if the length of the list is even, we need to calculate the average of the middle two values to calculate the median
+    
+  else:
+    (lst.get(mid - 1) + lst.get(mid)) / 2
+  end
+
+where:
+  mediann([list: 1,2,3,4]) is 2.5
+  mediann([list: 2,3,4]) is 3
+end
+
+#Extracting flipper lengths for the penguins from each island as lists
+
+torgerson_flipper_lengths = torgerson_penguins.column("flipper_length_mm")
+
+biscoe_flipper_lengths = biscoe_penguins.column("flipper_length_mm")
+
+dream_flipper_lengths = dream_penguins.column("flipper_length_mm")
+
+# Selection process of filtering tables by selecting the values that are greater than the median
+
+torgerson_penguins_new1 = filter-with(torgerson_penguins, lam(r :: Row): 
+  r["flipper_length_mm"] > mediann(torgerson_flipper_lengths) end)
+
+biscoe_penguins_new1 = filter-with(biscoe_penguins, lam(r :: Row): 
+  r["flipper_length_mm"] > mediann(biscoe_flipper_lengths) end)
+
+dream_penguins_new1 = filter-with(dream_penguins, lam(r :: Row): 
+  r["flipper_length_mm"] > mediann(dream_flipper_lengths) end)
+
+
+#biscoe_penguins 
+biscoe_penguins_new1
+
+# Tables show that "filter_length_mm" column has been changed with selection to only include values that are greater than the median. 
+
