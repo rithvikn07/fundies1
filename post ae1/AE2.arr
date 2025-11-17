@@ -9,6 +9,9 @@ penguins = load-table:
     
   sanitize body_mass_g using num-sanitizer
   sanitize bill_length_mm using num-sanitizer
+  sanitize flipper_length_mm using num-sanitizer
+  sanitize bill_depth_mm using num-sanitizer
+  sanitize year using num-sanitizer
 
 end
 
@@ -162,7 +165,7 @@ chinstrap_penguins_new1 = transform-column(chinstrap_penguins, "bill_length_mm",
   end)
 
 #adelie_penguins
-adelie_penguins_new1
+#adelie_penguins_new1
 
 # Tables show that "bill_length_mm" column has been transformed. Same result will be shown in other two species as well. 
 
@@ -226,6 +229,8 @@ dream_flipper_lengths = dream_penguins.column("flipper_length_mm")
 
 # Selection process of filtering tables by selecting the values that are greater than the median
 
+mediann(torgerson_flipper_lengths)
+
 torgerson_penguins_new1 = filter-with(torgerson_penguins, lam(r :: Row): 
   r["flipper_length_mm"] > mediann(torgerson_flipper_lengths) end)
 
@@ -236,8 +241,30 @@ dream_penguins_new1 = filter-with(dream_penguins, lam(r :: Row):
   r["flipper_length_mm"] > mediann(dream_flipper_lengths) end)
 
 
-#biscoe_penguins 
+
+fun above_mediann(r :: Row) -> Boolean:
+  doc: "Checking if the selection process works correctly."
+  
+  if (r["island"] == "Biscoe") and (r["flipper_length_mm"] > mediann(biscoe_flipper_lengths)):
+    true
+  else if (r["island"] == "Torgerson") and (r["flipper_length_mm"] > mediann(torgerson_flipper_lengths)):
+    true
+  else if (r["island"] == "Dream") and (r["flipper_length_mm"] > mediann(dream_flipper_lengths)):
+    true
+  else:
+    false
+  end
+    
+where:
+  above_mediann(torgerson_penguins_new1.row-n(3)) is true
+  
+end
+
+
+
+torgerson_penguins_new1
 biscoe_penguins_new1
+dream_penguins_new1
 
 # Tables show that "filter_length_mm" column has been changed with selection to only include values that are greater than the median. 
 
@@ -248,5 +275,4 @@ biscoe_penguins_new1
    " W "
    
 |#
-      
       
