@@ -241,3 +241,12 @@ biscoe_penguins_new1
 
 # Tables show that "filter_length_mm" column has been changed with selection to only include values that are greater than the median. 
 
+#| Accumulation
+
+   Example Question 1
+   
+   " W "
+   
+|#
+      
+      
