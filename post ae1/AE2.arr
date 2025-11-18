@@ -241,7 +241,9 @@ dream_penguins_new1 = filter-with(dream_penguins, lam(r :: Row):
   r["flipper_length_mm"] > mediann(dream_flipper_lengths) end)
 
 mediann(biscoe_flipper_lengths)
+mediann(dream_flipper_lengths)
 
+#Writing a checker
 fun above_mediann(r :: Row) -> Boolean:
   doc: "Checking if the selection process works correctly."
   
@@ -257,22 +259,46 @@ fun above_mediann(r :: Row) -> Boolean:
     
 where:
   above_mediann(biscoe_penguins_new1.row-n(3)) is true
+  above_mediann(biscoe_penguins_new1.row-n(0)) is true
+  above_mediann(dream_penguins_new1.row-n(1)) is true
   
+  above_mediann(dream_penguins.row-n(1)) is false
 end
 
+#| This shows that every value in these "new1" tables return true because they are transformed to only include the values that satisfy the condition of being greater than the median.
 
+   The test case of the original table "dream_penguins" tests a value that is less than the median, so it returns false and is also not included in the "new1" table.
+   
+|#
 
 torgerson_penguins_new1
 biscoe_penguins_new1
-dream_penguins_new1
+dream_penguins
 
-# Tables show that "filter_length_mm" column has been changed with selection to only include values that are greater than the median. 
+#
 
 #| Accumulation
 
    Example Question 1
    
-   " W "
+   "How many penguins have a bill-length-to-depth ratio greater than 3.0?"
    
 |#
       
+bill_lengths = penguins.column("bill_length_mm")
+
+bill_depths = penguins.column("bill_depth_mm")
+
+fun count-ratios(lengths :: List, depths :: list, threshold :: Number) -> Number:
+  var acc = 0
+  
+  for i from 0 to (length(lengths) - 1):
+    ratio = length(i) / depth(i)
+    if ratio > threshold:
+      acc := acc + 1
+    end
+  end
+
+  
+  acc
+end
