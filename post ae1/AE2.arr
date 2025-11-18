@@ -271,9 +271,9 @@ end
    
 |#
 
-torgerson_penguins_new1
-biscoe_penguins_new1
-dream_penguins
+#torgerson_penguins_new1
+#biscoe_penguins_new1
+#dream_penguins_new1
 
 #
 
@@ -281,24 +281,43 @@ dream_penguins
 
    Example Question 1
    
-   "How many penguins have a bill-length-to-depth ratio greater than 3.0?"
+   "How many penguins have a bill-length greater than the median bill-length of all penguins?"
    
 |#
-      
+   
+
+#Extracting the column "bill_lengths_mm" of all the penguins in the dataset as a list
 bill_lengths = penguins.column("bill_length_mm")
 
-bill_depths = penguins.column("bill_depth_mm")
 
-fun count-ratios(lengths :: List, depths :: list, threshold :: Number) -> Number:
+# Function to count the number of penguins with bill lengths greater than the median
+
+fun count-above-mean(lengths :: List) -> Number block:
   var acc = 0
   
-  for i from 0 to (length(lengths) - 1):
-    ratio = length(i) / depth(i)
-    if ratio > threshold:
-      acc := acc + 1
+  for each(num from lengths) block:
+    # uses for each loop to transverse "num" through each element of "lengths" list
+    # calls to the avrg() function made earlier in the program
+    if num > avrg(lengths):
+      acc:= acc + 1
+    else:
+      0
     end
-  end
-
+    
   
+  end
   acc
+  
+where:
+  count-above-mean([list: 3, 7, 2, 5, 1, 9, 6]) is 4
 end
+
+
+penguins
+
+# Calling function to find output
+count-above-mean(bill_lengths)
+
+
+
+
