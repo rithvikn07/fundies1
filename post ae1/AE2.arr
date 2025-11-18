@@ -240,7 +240,7 @@ biscoe_penguins_new1 = filter-with(biscoe_penguins, lam(r :: Row):
 dream_penguins_new1 = filter-with(dream_penguins, lam(r :: Row): 
   r["flipper_length_mm"] > mediann(dream_flipper_lengths) end)
 
-
+mediann(biscoe_flipper_lengths)
 
 fun above_mediann(r :: Row) -> Boolean:
   doc: "Checking if the selection process works correctly."
@@ -256,7 +256,7 @@ fun above_mediann(r :: Row) -> Boolean:
   end
     
 where:
-  above_mediann(torgerson_penguins_new1.row-n(3)) is true
+  above_mediann(biscoe_penguins_new1.row-n(3)) is true
   
 end
 

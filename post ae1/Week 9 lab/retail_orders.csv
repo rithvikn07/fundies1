@@ -1,0 +1,177 @@
+order_id,date,branch,item,size,quantity,unit_price,order_type,payment_method
+1001,2023-07-01,Riverside,Sandwich,S,1,4.5,dine-in,card
+1002,2023-07-01,Riverside,Cappuccino,S,4,3.0,dine-in,card
+1003,2023-07-01,City Centre,Tea,M,1,2.2,takeout,app
+1004,2023-07-01,University,Latte,L,3,4.3,dine-in,app
+1005,2023-07-01,City Centre,Tea,M,1,2.2,takeout,card
+1006,2023-07-01,University,Tea,S,1,1.8,takeout,card
+1007,2023-07-01,University,Sandwich,M,4,4.5,dine-in,card
+1008,2023-07-01,City Centre,Sandwich,S,3,4.5,dine-in,card
+1009,2023-07-02,University,Tea,S,4,1.8,dine-in,card
+1010,2023-07-02,City Centre,Cappuccino,L,1,4.1,dine-in,app
+1011,2023-07-02,University,Americano,M,4,2.9,takeout,app
+1012,2023-07-02,University,Salad,M,1,5.0,dine-in,app
+1013,2023-07-02,City Centre,Salad,L,3,5.0,takeout,card
+1014,2023-07-02,University,Salad,M,1,5.0,takeout,card
+1015,2023-07-02,University,Bagel,M,4,2.8,dine-in,card
+1016,2023-07-02,City Centre,Sandwich,L,3,4.5,dine-in,card
+1017,2023-07-02,University,Americano,S,1,2.5,delivery,card
+1018,2023-07-02,City Centre,Cappuccino,M,3,3.6,dine-in,card
+1019,2023-07-03,City Centre,Tea,L,1,2.6,dine-in,card
+1020,2023-07-03,University,Muffin,M,4,2.4,takeout,app
+1021,2023-07-03,City Centre,Latte,S,2,3.2,dine-in,card
+1022,2023-07-03,City Centre,Latte,M,1,3.8,dine-in,card
+1023,2023-07-03,Riverside,Espresso,M,3,2.6,takeout,card
+1024,2023-07-03,Riverside,Latte,M,4,3.8,takeout,card
+1025,2023-07-03,University,Bagel,M,4,2.8,dine-in,card
+1026,2023-07-03,Riverside,Salad,M,2,5.0,dine-in,card
+1027,2023-07-04,University,Salad,L,3,5.0,dine-in,card
+1028,2023-07-04,University,Espresso,M,3,2.6,delivery,card
+1029,2023-07-04,University,Bagel,S,2,2.8,takeout,cash
+1030,2023-07-04,Riverside,Cappuccino,M,1,3.6,takeout,card
+1031,2023-07-04,Riverside,Espresso,M,3,2.6,takeout,card
+1032,2023-07-04,City Centre,Salad,M,2,5.0,delivery,app
+1033,2023-07-04,City Centre,Cappuccino,L,1,4.1,dine-in,card
+1034,2023-07-04,University,Latte,M,4,3.8,takeout,cash
+1035,2023-07-04,University,Latte,M,3,3.8,takeout,card
+1036,2023-07-04,City Centre,Cappuccino,M,1,3.6,delivery,cash
+1037,2023-07-04,University,Latte,L,2,4.3,dine-in,card
+1038,2023-07-05,Riverside,Americano,M,2,2.9,delivery,card
+1039,2023-07-05,City Centre,Latte,M,2,3.8,takeout,cash
+1040,2023-07-05,City Centre,Espresso,S,3,2.2,takeout,app
+1041,2023-07-05,University,Tea,L,1,2.6,takeout,card
+1042,2023-07-05,Riverside,Tea,L,4,2.6,dine-in,card
+1043,2023-07-05,Riverside,Latte,M,4,3.8,takeout,card
+1044,2023-07-05,University,Latte,S,1,3.2,takeout,cash
+1045,2023-07-05,University,Tea,M,1,2.2,dine-in,card
+1046,2023-07-05,Riverside,Latte,S,4,3.2,dine-in,card
+1047,2023-07-05,University,Cappuccino,M,2,3.6,takeout,app
+1048,2023-07-06,City Centre,Cappuccino,S,3,3.0,takeout,app
+1049,2023-07-06,Riverside,Cappuccino,M,4,3.6,takeout,card
+1050,2023-07-06,City Centre,Latte,M,1,3.8,dine-in,card
+1051,2023-07-06,Riverside,Muffin,S,2,2.4,dine-in,cash
+1052,2023-07-06,Riverside,Americano,M,2,2.9,dine-in,app
+1053,2023-07-06,City Centre,Americano,S,3,2.5,dine-in,card
+1054,2023-07-06,City Centre,Cappuccino,M,4,3.6,dine-in,card
+1055,2023-07-06,City Centre,Latte,L,2,4.3,takeout,card
+1056,2023-07-06,Riverside,Latte,M,3,3.8,dine-in,card
+1057,2023-07-06,University,Muffin,L,4,2.4,takeout,app
+1058,2023-07-06,City Centre,Muffin,S,1,2.4,delivery,card
+1059,2023-07-07,University,Salad,M,3,5.0,dine-in,card
+1060,2023-07-07,City Centre,Sandwich,M,3,4.5,takeout,card
+1061,2023-07-07,Riverside,Tea,S,2,1.8,dine-in,app
+1062,2023-07-07,Riverside,Espresso,L,3,3.0,delivery,card
+1063,2023-07-07,University,Muffin,S,1,2.4,dine-in,card
+1064,2023-07-07,Riverside,Cappuccino,L,4,4.1,dine-in,card
+1065,2023-07-07,City Centre,Muffin,M,4,2.4,dine-in,card
+1066,2023-07-07,Riverside,Espresso,S,2,2.2,dine-in,card
+1067,2023-07-07,City Centre,Latte,S,3,3.2,dine-in,card
+1068,2023-07-07,City Centre,Americano,M,3,2.9,dine-in,card
+1069,2023-07-07,University,Espresso,S,1,2.2,takeout,card
+1070,2023-07-07,City Centre,Tea,S,3,1.8,delivery,app
+1071,2023-07-08,City Centre,Cappuccino,M,2,3.6,dine-in,card
+1072,2023-07-08,City Centre,Sandwich,S,1,4.5,takeout,card
+1073,2023-07-08,City Centre,Latte,L,2,4.3,dine-in,card
+1074,2023-07-08,University,Americano,S,4,2.5,takeout,app
+1075,2023-07-08,City Centre,Latte,L,4,4.3,takeout,card
+1076,2023-07-08,University,Cappuccino,M,1,3.6,takeout,card
+1077,2023-07-08,Riverside,Muffin,M,2,2.4,takeout,app
+1078,2023-07-09,City Centre,Latte,L,1,4.3,dine-in,card
+1079,2023-07-09,University,Cappuccino,S,1,3.0,takeout,card
+1080,2023-07-09,University,Muffin,S,4,2.4,takeout,card
+1081,2023-07-09,City Centre,Bagel,S,4,2.8,dine-in,card
+1082,2023-07-09,University,Muffin,M,2,2.4,dine-in,card
+1083,2023-07-09,City Centre,Bagel,S,2,2.8,dine-in,card
+1084,2023-07-10,University,Latte,S,4,3.2,dine-in,app
+1085,2023-07-10,City Centre,Cappuccino,S,2,3.0,takeout,card
+1086,2023-07-10,City Centre,Espresso,S,4,2.2,dine-in,card
+1087,2023-07-10,Riverside,Salad,S,1,5.0,dine-in,app
+1088,2023-07-10,City Centre,Latte,L,3,4.3,takeout,app
+1089,2023-07-10,Riverside,Salad,M,1,5.0,takeout,card
+1090,2023-07-11,City Centre,Americano,S,3,2.5,dine-in,card
+1091,2023-07-11,City Centre,Americano,S,4,2.5,dine-in,card
+1092,2023-07-11,City Centre,Salad,S,3,5.0,delivery,cash
+1093,2023-07-11,City Centre,Latte,L,3,4.3,dine-in,app
+1094,2023-07-11,Riverside,Muffin,M,2,2.4,dine-in,card
+1095,2023-07-11,City Centre,Espresso,M,4,2.6,dine-in,card
+1096,2023-07-11,Riverside,Salad,L,2,5.0,takeout,card
+1097,2023-07-12,City Centre,Tea,S,3,1.8,delivery,card
+1098,2023-07-12,University,Latte,M,3,3.8,delivery,card
+1099,2023-07-12,City Centre,Espresso,M,3,2.6,takeout,app
+1100,2023-07-12,University,Muffin,S,4,2.4,takeout,card
+1101,2023-07-12,University,Bagel,M,2,2.8,dine-in,card
+1102,2023-07-12,City Centre,Americano,M,2,2.9,dine-in,card
+1103,2023-07-12,Riverside,Cappuccino,M,4,3.6,takeout,card
+1104,2023-07-12,City Centre,Tea,M,2,2.2,takeout,card
+1105,2023-07-12,City Centre,Muffin,M,3,2.4,takeout,card
+1106,2023-07-12,Riverside,Latte,M,4,3.8,takeout,card
+1107,2023-07-12,Riverside,Salad,L,4,5.0,dine-in,card
+1108,2023-07-13,City Centre,Cappuccino,M,4,3.6,dine-in,card
+1109,2023-07-13,City Centre,Latte,M,1,3.8,takeout,card
+1110,2023-07-13,University,Espresso,M,1,2.6,dine-in,card
+1111,2023-07-13,City Centre,Espresso,S,1,2.2,dine-in,app
+1112,2023-07-13,City Centre,Salad,M,2,5.0,dine-in,card
+1113,2023-07-13,University,Salad,M,3,5.0,dine-in,card
+1114,2023-07-13,City Centre,Muffin,S,2,2.4,dine-in,app
+1115,2023-07-13,University,Latte,S,4,3.2,delivery,card
+1116,2023-07-13,City Centre,Espresso,L,1,3.0,dine-in,card
+1117,2023-07-14,University,Espresso,M,3,2.6,dine-in,cash
+1118,2023-07-14,University,Cappuccino,S,2,3.0,dine-in,app
+1119,2023-07-14,University,Tea,L,1,2.6,delivery,card
+1120,2023-07-14,City Centre,Latte,S,4,3.2,delivery,card
+1121,2023-07-14,City Centre,Latte,S,2,3.2,takeout,card
+1122,2023-07-14,City Centre,Bagel,S,4,2.8,dine-in,app
+1123,2023-07-14,Riverside,Latte,S,1,3.2,delivery,card
+1124,2023-07-15,City Centre,Bagel,M,3,2.8,takeout,card
+1125,2023-07-15,Riverside,Cappuccino,M,4,3.6,dine-in,card
+1126,2023-07-15,City Centre,Latte,M,4,3.8,dine-in,app
+1127,2023-07-15,City Centre,Salad,S,1,5.0,dine-in,card
+1128,2023-07-15,Riverside,Salad,M,3,5.0,dine-in,card
+1129,2023-07-15,University,Espresso,M,1,2.6,takeout,app
+1130,2023-07-15,City Centre,Salad,L,4,5.0,dine-in,card
+1131,2023-07-15,University,Latte,M,1,3.8,delivery,app
+1132,2023-07-16,Riverside,Latte,S,3,3.2,dine-in,card
+1133,2023-07-16,University,Cappuccino,M,2,3.6,takeout,card
+1134,2023-07-16,City Centre,Tea,S,4,1.8,dine-in,card
+1135,2023-07-16,Riverside,Latte,S,4,3.2,delivery,card
+1136,2023-07-16,Riverside,Latte,M,2,3.8,delivery,card
+1137,2023-07-16,University,Latte,L,3,4.3,takeout,card
+1138,2023-07-16,City Centre,Espresso,M,2,2.6,dine-in,card
+1139,2023-07-16,City Centre,Tea,S,4,1.8,dine-in,app
+1140,2023-07-16,City Centre,Muffin,S,4,2.4,dine-in,card
+1141,2023-07-16,Riverside,Sandwich,L,3,4.5,dine-in,card
+1142,2023-07-16,City Centre,Espresso,L,2,3.0,dine-in,card
+1143,2023-07-16,Riverside,Cappuccino,S,1,3.0,dine-in,app
+1144,2023-07-17,University,Latte,S,1,3.2,takeout,card
+1145,2023-07-17,City Centre,Muffin,S,1,2.4,dine-in,card
+1146,2023-07-17,Riverside,Tea,S,1,1.8,dine-in,card
+1147,2023-07-17,University,Latte,M,2,3.8,takeout,card
+1148,2023-07-17,University,Muffin,M,3,2.4,dine-in,card
+1149,2023-07-17,University,Bagel,L,4,2.8,dine-in,card
+1150,2023-07-18,City Centre,Muffin,M,4,2.4,takeout,app
+1151,2023-07-18,City Centre,Cappuccino,L,4,4.1,dine-in,app
+1152,2023-07-18,University,Latte,S,2,3.2,dine-in,cash
+1153,2023-07-18,University,Tea,M,2,2.2,delivery,card
+1154,2023-07-18,City Centre,Salad,S,4,5.0,dine-in,card
+1155,2023-07-18,University,Americano,L,1,3.3,takeout,app
+1156,2023-07-18,Riverside,Salad,M,2,5.0,dine-in,card
+1157,2023-07-18,University,Tea,S,4,1.8,takeout,card
+1158,2023-07-18,City Centre,Cappuccino,M,1,3.6,dine-in,card
+1159,2023-07-19,City Centre,Latte,M,1,3.8,takeout,app
+1160,2023-07-19,University,Cappuccino,L,3,4.1,dine-in,card
+1161,2023-07-19,University,Americano,M,4,2.9,dine-in,card
+1162,2023-07-19,City Centre,Cappuccino,M,4,3.6,dine-in,app
+1163,2023-07-19,Riverside,Latte,M,3,3.8,takeout,card
+1164,2023-07-19,City Centre,Latte,M,1,3.8,dine-in,card
+1165,2023-07-19,Riverside,Latte,M,4,3.8,dine-in,cash
+1166,2023-07-20,Riverside,Salad,M,1,5.0,dine-in,app
+1167,2023-07-20,City Centre,Salad,L,2,5.0,delivery,card
+1168,2023-07-20,University,Sandwich,M,3,4.5,takeout,card
+1169,2023-07-20,City Centre,Sandwich,S,4,4.5,takeout,card
+1170,2023-07-20,City Centre,Americano,S,2,2.5,dine-in,card
+1171,2023-07-20,City Centre,Americano,M,3,2.9,takeout,card
+1172,2023-07-20,City Centre,Americano,L,1,3.3,takeout,card
+1173,2023-07-20,City Centre,Bagel,M,4,2.8,takeout,app
+1174,2023-07-20,Riverside,Bagel,M,2,2.8,takeout,card
+1175,2023-07-20,University,Cappuccino,S,3,3.0,delivery,card
+1176,2023-07-20,University,Espresso,M,4,2.6,takeout,card
