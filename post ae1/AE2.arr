@@ -22,7 +22,6 @@ end
    Example Question 1
 
    What is the ratio of average male body mass to average female body mass? 
-
 |#
 
 # Filter table to get two different tables for men and women
@@ -76,8 +75,9 @@ gentoo_masses = gentoo_penguins.column("body_mass_g")
 
 chinstrap_masses = chinstrap_penguins.column("body_mass_g")
 
-# Function to calculate variance of body mass lists
+
 fun variance(ls :: List <Number>) -> Number block:
+  doc; "Function to calculate variance of body mass lists"
   avg = avrg(ls)
   
   var total_ = 0
@@ -175,7 +175,7 @@ chinstrap_penguins_new1 = transform-column(chinstrap_penguins, "bill_length_mm",
 
 #| Selection
    
-   Example Question 1
+   Example Question
    
    "Which penguins have flipper lengths greater than the median flipper length of the island they were found on?"
    
@@ -268,7 +268,6 @@ fun count-above-mean(lengths :: List) -> Number block:
     else:
       0
     end
-    
   
   end
   acc
@@ -278,11 +277,6 @@ where:
 end
 
 
-
-
 # Calling function to find output
 count-above-mean(bill_lengths)
-
-
-
 
