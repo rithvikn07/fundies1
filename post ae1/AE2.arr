@@ -1,7 +1,8 @@
 use context dcic2024
 include csv
 include data-source
-
+import statistics as s
+import math as m
 
 penguins = load-table:
   Penguin-number,species,island,bill_length_mm,bill_depth_mm,flipper_length_mm,body_mass_g,sex,year
@@ -110,6 +111,7 @@ fun max_calculator(a, b, c) -> String:
   
 where:
   max_calculator(2, 4, 6) is "third value is max"
+  max_calculator(3, 5, 2) is "second value is max"
 end
 
 max_calculator(adelie_masses_var, gentoo_masses_var, chinstrap_masses_var)
@@ -118,7 +120,7 @@ max_calculator(adelie_masses_var, gentoo_masses_var, chinstrap_masses_var)
 
 #| Transformation
    
-   Example Question 1
+   Example Question
    
    "How can I view the lengths of penguins' bills in such a way that I know if they fall below or above the average for their species?"
    
@@ -132,7 +134,6 @@ adelie_bill_length = adelie_penguins.column("bill_length_mm")
 gentoo_bill_length = gentoo_penguins.column("bill_length_mm")
 
 chinstrap_bill_length = chinstrap_penguins.column("bill_length_mm")
-
 
 
 # Transforms table of adelie penguins by comparing each value to the average. Short-bill implies below average, and long-bill implies above average.
@@ -167,6 +168,7 @@ chinstrap_penguins_new1 = transform-column(chinstrap_penguins, "bill_length_mm",
 #adelie_penguins
 #adelie_penguins_new1
 
+
 # Tables show that "bill_length_mm" column has been transformed. Same result will be shown in other two species as well. 
 
 
@@ -189,36 +191,6 @@ biscoe_penguins = filter-with(penguins, lam(r :: Row): r["island"] == "Biscoe" e
 dream_penguins = filter-with(penguins, lam(r :: Row): r["island"] == "Dream" end)
 
 
-# Ordering in ascending order to find median
-
-torgerson_penguins_ordered = order-by(torgerson_penguins, "flipper_length_mm", true)
-
-biscoe_penguins_ordered = order-by(biscoe_penguins, "flipper_length_mm", true)
-
-dream_penguins_ordered = order-by(dream_penguins, "flipper_length_mm", true)
-
-# Function to calculate median of list
-fun mediann(lst :: List <Number>):
-  num = length(lst)
-  mid = num-round(num / 2)
-  
-  # use num-round because: if the length of a list is odd, for example 3, 3/2 is not an integer. num-round rounds it up to 2. which is why we do "mid - 1" when the list length is odd.
-  
-  if num-modulo(num, 2) == 1:
-    lst.get(mid - 1)
-    
-    # if the length of the list is odd, there will be a middle value which acts as the median. 
-    # however if the length of the list is even, we need to calculate the average of the middle two values to calculate the median
-    
-  else:
-    (lst.get(mid - 1) + lst.get(mid)) / 2
-  end
-
-where:
-  mediann([list: 1,2,3,4]) is 2.5
-  mediann([list: 2,3,4]) is 3
-end
-
 #Extracting flipper lengths for the penguins from each island as lists
 
 torgerson_flipper_lengths = torgerson_penguins.column("flipper_length_mm")
@@ -229,29 +201,27 @@ dream_flipper_lengths = dream_penguins.column("flipper_length_mm")
 
 # Selection process of filtering tables by selecting the values that are greater than the median
 
-mediann(torgerson_flipper_lengths)
+
 
 torgerson_penguins_new1 = filter-with(torgerson_penguins, lam(r :: Row): 
-  r["flipper_length_mm"] > mediann(torgerson_flipper_lengths) end)
+  r["flipper_length_mm"] > s.median(torgerson_flipper_lengths) end)
 
 biscoe_penguins_new1 = filter-with(biscoe_penguins, lam(r :: Row): 
-  r["flipper_length_mm"] > mediann(biscoe_flipper_lengths) end)
+  r["flipper_length_mm"] > s.median(biscoe_flipper_lengths) end)
 
 dream_penguins_new1 = filter-with(dream_penguins, lam(r :: Row): 
-  r["flipper_length_mm"] > mediann(dream_flipper_lengths) end)
+  r["flipper_length_mm"] > s.median(dream_flipper_lengths) end)
 
-mediann(biscoe_flipper_lengths)
-mediann(dream_flipper_lengths)
 
 #Writing a checker
 fun above_mediann(r :: Row) -> Boolean:
   doc: "Checking if the selection process works correctly."
   
-  if (r["island"] == "Biscoe") and (r["flipper_length_mm"] > mediann(biscoe_flipper_lengths)):
+  if (r["island"] == "Biscoe") and (r["flipper_length_mm"] > s.median(biscoe_flipper_lengths)):
     true
-  else if (r["island"] == "Torgerson") and (r["flipper_length_mm"] > mediann(torgerson_flipper_lengths)):
+  else if (r["island"] == "Torgerson") and (r["flipper_length_mm"] > s.median(torgerson_flipper_lengths)):
     true
-  else if (r["island"] == "Dream") and (r["flipper_length_mm"] > mediann(dream_flipper_lengths)):
+  else if (r["island"] == "Dream") and (r["flipper_length_mm"] > s.median(dream_flipper_lengths)):
     true
   else:
     false
@@ -271,11 +241,6 @@ end
    
 |#
 
-#torgerson_penguins_new1
-#biscoe_penguins_new1
-#dream_penguins_new1
-
-#
 
 #| Accumulation
 
@@ -313,7 +278,7 @@ where:
 end
 
 
-penguins
+
 
 # Calling function to find output
 count-above-mean(bill_lengths)
