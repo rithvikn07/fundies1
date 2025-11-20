@@ -68,7 +68,7 @@ gentoo_penguins = filter-with(penguins, lam(r3 :: Row): r3["species"] == "Gentoo
 
 chinstrap_penguins = filter-with(penguins, lam(r4 :: Row): r4["species"] == "Chinstrap" end )
   
-# Extracting the body masses as lists
+#| Extracting the body masses as lists
 adelie_masses = adelie_penguins.column("body_mass_g")
 
 gentoo_masses = gentoo_penguins.column("body_mass_g")
@@ -77,7 +77,7 @@ chinstrap_masses = chinstrap_penguins.column("body_mass_g")
 
 
 fun variance(ls :: List <Number>) -> Number block:
-  doc; "Function to calculate variance of body mass lists"
+  doc: "Function to calculate variance of body mass lists"
   avg = avrg(ls)
   
   var total_ = 0
@@ -116,6 +116,7 @@ end
 
 max_calculator(adelie_masses_var, gentoo_masses_var, chinstrap_masses_var)
 
+|#
 
 
 #| Transformation
@@ -146,8 +147,7 @@ adelie_penguins_new1 = transform-column(adelie_penguins, "bill_length_mm", lam(x
     end
   end)
 
-#Do the same with the other two species:
-
+#Doing the same with the other two species:
 
 gentoo_penguins_new1 = transform-column(gentoo_penguins, "bill_length_mm", lam(x :: Number) -> String: 
     if x < avrg(gentoo_bill_length):
