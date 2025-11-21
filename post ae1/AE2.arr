@@ -36,8 +36,9 @@ male_masses = male_penguins.column("body_mass_g")
 
 female_masses = female_penguins.column("body_mass_g")
 
-# Function to calculate average of a list
+
 fun avrg(l :: List <Number>) -> Number block:
+  doc: "Calculates average of any given list"
   var summ = 0
   var countt = 0
   for each(x from l) block:
@@ -154,7 +155,6 @@ dream_flipper_lengths = dream_penguins.column("flipper_length_mm")
 # Selection process of filtering tables by selecting the values that are greater than the median
 
 
-
 torgerson_penguins_new1 = filter-with(torgerson_penguins, lam(r :: Row): 
   r["flipper_length_mm"] > s.median(torgerson_flipper_lengths) end)
 
@@ -192,6 +192,27 @@ end
    The test case of the original table "dream_penguins" tests a value that is less than the median, so it returns false and is also not included in the "new1" table.
    
 |#
+
+
+#Visualisation part:
+
+# Count how many penguins were selected from each island
+torgerson_count = torgerson_penguins_new1.length()
+biscoe_count = biscoe_penguins_new1.length()
+dream_count = dream_penguins_new1.length()
+
+# Build a small table for plotting
+count-table =
+  table: island, count
+    row: "Torgersen", torgerson_count
+    row: "Biscoe", biscoe_count
+    row: "Dream", dream_count
+  end
+
+# Bar chart of selected penguins by island
+bar-chart(count-table, "island", "count")
+
+
 
 
 #| Accumulation
