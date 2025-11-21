@@ -219,7 +219,7 @@ bar-chart(count-table, "island", "count")
 
    Example Question 1
    
-   "How many penguins have a bill-length greater than the median bill-length of all penguins?"
+   "How many penguins have a bill-length greater than the mean bill-length of all penguins?"
    
 |#
    
