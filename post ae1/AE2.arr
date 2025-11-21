@@ -51,8 +51,7 @@ where:
   avrg([list: 3, 4]) is 3.5
 end
 
-# Ratio:
-avrg(male_masses) / avrg(female_masses)
+
 
 
 #| Example Question 2
@@ -60,63 +59,6 @@ avrg(male_masses) / avrg(female_masses)
    Which species has the greatest variance?
 |#
 
-
-# Filtering to get seperate tables for each species
-adelie_penguins = filter-with(penguins, lam(r2 :: Row): r2["species"] == "Adelie" end )
-
-gentoo_penguins = filter-with(penguins, lam(r3 :: Row): r3["species"] == "Gentoo" end )
-
-chinstrap_penguins = filter-with(penguins, lam(r4 :: Row): r4["species"] == "Chinstrap" end )
-  
-#| Extracting the body masses as lists
-adelie_masses = adelie_penguins.column("body_mass_g")
-
-gentoo_masses = gentoo_penguins.column("body_mass_g")
-
-chinstrap_masses = chinstrap_penguins.column("body_mass_g")
-
-
-fun variance(ls :: List <Number>) -> Number block:
-  doc: "Function to calculate variance of body mass lists"
-  avg = avrg(ls)
-  
-  var total_ = 0
-  var count_ = 0
-  
-  for each(y from ls) block:
-    total_:= total_ + ((y - avg) * (y - avg))
-    count_:= count_ + 1
-  end
-  
-  total_ / count_
-end
-
-# Storing variables as averages
-adelie_masses_var = num-round(variance(adelie_masses))
-
-gentoo_masses_var = num-round(variance(gentoo_masses))
-
-chinstrap_masses_var = num-round(variance(chinstrap_masses))
-
-# Function to calculate maximum value from three variables. 
-fun max_calculator(a, b, c) -> String:
-  
-  if (a >= b) and (a >= c):
-    "first value is max"
-  else if (b >= a) and (b >= c):
-    "second value is max"
-  else:
-    "third value is max"
-  end
-  
-where:
-  max_calculator(2, 4, 6) is "third value is max"
-  max_calculator(3, 5, 2) is "second value is max"
-end
-
-max_calculator(adelie_masses_var, gentoo_masses_var, chinstrap_masses_var)
-
-|#
 
 
 #| Transformation
@@ -127,6 +69,13 @@ max_calculator(adelie_masses_var, gentoo_masses_var, chinstrap_masses_var)
    
 |#
 
+
+# Filtering to get seperate tables for each species
+adelie_penguins = filter-with(penguins, lam(r2 :: Row): r2["species"] == "Adelie" end )
+
+gentoo_penguins = filter-with(penguins, lam(r3 :: Row): r3["species"] == "Gentoo" end )
+
+chinstrap_penguins = filter-with(penguins, lam(r4 :: Row): r4["species"] == "Chinstrap" end )
 
 # Extracting the bill_lengths for each species as lists
 
@@ -165,11 +114,14 @@ chinstrap_penguins_new1 = transform-column(chinstrap_penguins, "bill_length_mm",
     end
   end)
 
-#adelie_penguins
-#adelie_penguins_new1
+# Outputting the tables to show that "bill_length_mm" column has been transformed. Same result will be shown in other two species as well. 
+
+adelie_penguins
+adelie_penguins_new1
+
+freq-bar-chart(chinstrap_penguins_new1, "bill_length_mm")
 
 
-# Tables show that "bill_length_mm" column has been transformed. Same result will be shown in other two species as well. 
 
 
 
