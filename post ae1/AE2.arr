@@ -19,7 +19,7 @@ end
 
 #| Scalar Processing
 
-   Example Question 1
+   Example Question
 
    What is the ratio of average male body mass to average female body mass? 
 |#
@@ -52,14 +52,7 @@ where:
   avrg([list: 3, 4]) is 3.5
 end
 
-
-
-
-#| Example Question 2
-
-   Which species has the greatest variance?
-|#
-
+avrg(male_masses) / avrg(female_masses)
 
 
 #| Transformation
@@ -120,10 +113,8 @@ chinstrap_penguins_new1 = transform-column(chinstrap_penguins, "bill_length_mm",
 adelie_penguins
 adelie_penguins_new1
 
+#visualisation
 freq-bar-chart(chinstrap_penguins_new1, "bill_length_mm")
-
-
-
 
 
 #| Selection
@@ -154,6 +145,7 @@ dream_flipper_lengths = dream_penguins.column("flipper_length_mm")
 
 # Selection process of filtering tables by selecting the values that are greater than the median
 
+#(s.median is used as it is a math function that has been imported as s at the start of the program)
 
 torgerson_penguins_new1 = filter-with(torgerson_penguins, lam(r :: Row): 
   r["flipper_length_mm"] > s.median(torgerson_flipper_lengths) end)
@@ -165,7 +157,7 @@ dream_penguins_new1 = filter-with(dream_penguins, lam(r :: Row):
   r["flipper_length_mm"] > s.median(dream_flipper_lengths) end)
 
 
-#Writing a checker
+# checks if each item in the row satisfies condition
 fun above_mediann(r :: Row) -> Boolean:
   doc: "Checking if the selection process works correctly."
   
@@ -196,12 +188,12 @@ end
 
 #Visualisation part:
 
-# Count how many penguins were selected from each island
+# Counting how many penguins were selected from each island
 torgerson_count = torgerson_penguins_new1.length()
 biscoe_count = biscoe_penguins_new1.length()
 dream_count = dream_penguins_new1.length()
 
-# Build a small table for plotting
+# Building a small table for plotting
 count-table =
   table: island, count
     row: "Torgersen", torgerson_count
@@ -211,7 +203,6 @@ count-table =
 
 # Bar chart of selected penguins by island
 bar-chart(count-table, "island", "count")
-
 
 
 
@@ -227,10 +218,8 @@ bar-chart(count-table, "island", "count")
 #Extracting the column "bill_lengths_mm" of all the penguins in the dataset as a list
 bill_lengths = penguins.column("bill_length_mm")
 
-
-# Function to count the number of penguins with bill lengths greater than the median
-
 fun count-above-mean(lengths :: List) -> Number block:
+  doc: "counts number of items above the mean in a list"
   var acc = 0
   
   for each(num from lengths) block:
@@ -246,10 +235,47 @@ fun count-above-mean(lengths :: List) -> Number block:
   acc
   
 where:
-  count-above-mean([list: 3, 7, 2, 5, 1, 9, 6]) is 4
+  count-above-mean([list: 36, 38, 40, 44]) is 2
 end
 
 
 # Calling function to find output
 count-above-mean(bill_lengths)
 
+
+#Visualisation:
+
+# Calculating the mean
+bill_mean = avrg(bill_lengths)
+
+# Storing the number of penguins above the mean as a variable 
+  count-above-mean(bill_lengths)
+
+# calculating the number of penguins below the mean by subtracting the total number of penguins minus the ones above the mean
+
+above_count =
+below_count =
+  bill_lengths.length() - above_count
+
+# Building a table for plotting
+mean-count-table =
+  table: category, count
+    row: "Above Mean", above_count
+    row: "Below Mean", below_count
+  end
+
+bar-chart(mean-count-table, "category","count")
+
+
+#Bonus:
+#Extracting columns of bill lengths from each species-specific table
+
+adelie_bill_lengths = adelie_penguins.column("bill_length_mm")
+gentoo_bill_lengths = gentoo_penguins.column("bill_length_mm")
+chinstrap_bill_lengths = chinstrap_penguins.column("bill_length_mm")
+
+#Calling function to each of these lists
+
+count-above-mean(adelie_bill_lengths)
+count-above-mean(gentoo_bill_lengths)
+count-above-mean(chinstrap_bill_lengths)
